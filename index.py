@@ -26,19 +26,24 @@ if nodesInfoPath == None:
 # read the nodes info
 nodesDf = pd.read_excel(nodesInfoPath)
 
-if ('ip' not in nodesDf) or (len(nodesDf['ip']) == 0):
+ipCol = 'ip'
+nameCol = 'name'
+if (ipCol not in nodesDf) or (len(nodesDf[ipCol]) == 0):
     sys.exit('IPs not present or not found in nodes.xlsx file...')
 
-nodeIps = nodesDf['ip'].values.tolist()
+if (nameCol not in nodesDf) or (len(nodesDf[nameCol]) == 0):
+    sys.exit('Names not present or not found in nodes.xlsx file...')
 
 statusList = []
 
-for nIp in nodeIps:
+for nRow in range(nodesDf.shape[0]):
+    nIp = nodesDf[ipCol].iloc[nRow]
+    nName = nodesDf[nameCol].iloc[nRow]
     nodeStatus = fetchNodeStatus(nIp, 0.5)
     nowTimeStr = dt.datetime.strftime(dt.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    statusList.append([nowTimeStr, nIp, nodeStatus])
+    statusList.append([nowTimeStr, nIp, nName, nodeStatus])
 
-statusDf = pd.DataFrame(data=statusList, columns=['timestamp', 'ip', 'status'])
+statusDf = pd.DataFrame(data=statusList, columns=['timestamp', 'ip', 'name', 'status'])
 # print(statusDf)
 
 # get the filepath of the status dump file
