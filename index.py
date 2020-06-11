@@ -45,7 +45,7 @@ for nRow in range(nodesDf.shape[0]):
     nowTimeStr = dt.datetime.strftime(dt.datetime.now(), '%d_%m_%Y_%H_%M_%S')
     statusList.append([nowTimeStr, nIp, nName, nodeStatus])
 
-statusDf = pd.DataFrame(data=statusList, columns=['timestamp', 'ip', 'name', 'status'])
+statusDf = pd.DataFrame(data=statusList, columns=['data_time', 'ip', 'name', 'status'])
 # print(statusDf)
 
 # get the filepath of the status dump file
