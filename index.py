@@ -34,13 +34,15 @@ if (ipCol not in nodesDf) or (len(nodesDf[ipCol]) == 0):
 if (nameCol not in nodesDf) or (len(nodesDf[nameCol]) == 0):
     sys.exit('Names not present or not found in nodes.xlsx file...')
 
+# remove duplicate rows based on the name and ip columns
+
 statusList = []
 
 for nRow in range(nodesDf.shape[0]):
     nIp = nodesDf[ipCol].iloc[nRow]
     nName = nodesDf[nameCol].iloc[nRow]
     nodeStatus = fetchNodeStatus(nIp, 0.5)
-    nowTimeStr = dt.datetime.strftime(dt.datetime.now(), '%Y-%m-%d %H:%M:%S')
+    nowTimeStr = dt.datetime.strftime(dt.datetime.now(), '%d_%m_%Y_%H_%M_%S')
     statusList.append([nowTimeStr, nIp, nName, nodeStatus])
 
 statusDf = pd.DataFrame(data=statusList, columns=['timestamp', 'ip', 'name', 'status'])
