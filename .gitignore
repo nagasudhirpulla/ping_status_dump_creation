@@ -1,4 +1,7 @@
 *.csv
+*.spec
+dist/*
+build/*
 .vscode/*
 .DS_Store
 .huskyrc.json
