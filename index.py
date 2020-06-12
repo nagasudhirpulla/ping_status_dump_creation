@@ -35,6 +35,8 @@ if (nameCol not in nodesDf) or (len(nodesDf[nameCol]) == 0):
     sys.exit('Names not present or not found in nodes.xlsx file...')
 
 # remove duplicate rows based on the name and ip columns
+nodesDf = nodesDf.drop_duplicates(subset=nameCol, keep="first")
+nodesDf = nodesDf.drop_duplicates(subset=ipCol, keep="first")
 
 statusList = []
 
@@ -45,7 +47,8 @@ for nRow in range(nodesDf.shape[0]):
     nowTimeStr = dt.datetime.strftime(dt.datetime.now(), '%d_%m_%Y_%H_%M_%S')
     statusList.append([nowTimeStr, nIp, nName, nodeStatus])
 
-statusDf = pd.DataFrame(data=statusList, columns=['data_time', 'ip', 'name', 'status'])
+statusDf = pd.DataFrame(data=statusList, columns=[
+                        'data_time', 'ip', 'name', 'status'])
 # print(statusDf)
 
 # get the filepath of the status dump file
