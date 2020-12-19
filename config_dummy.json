@@ -1,0 +1,8 @@
+{
+    "nodesExcelPath": "nodes.xlsx",
+    "tokenUrl": "",
+    "clientId": "",
+    "clientSecret": "",
+    "clientScope": "",
+    "pingStatusCreationEndPnt": ""
+}

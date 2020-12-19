@@ -1,4 +1,4 @@
-from nodeStatusFetcher import fetchNodeStatus
+from utils.nodeStatusFetcher import fetchNodeStatus
 import pandas as pd
 import sys
 import datetime as dt
