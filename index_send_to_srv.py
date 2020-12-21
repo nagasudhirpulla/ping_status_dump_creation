@@ -51,4 +51,4 @@ accessToken = getAccessTokenFromSts(
 endpoint = appConfig["pingStatusCreationEndPnt"]
 res = requests.post(endpoint, json=payload, headers={
                     'Authorization': 'Bearer {}'.format(accessToken)})
-# print(res.text)
+print(res.text)
