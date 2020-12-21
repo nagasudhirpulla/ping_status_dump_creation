@@ -1,4 +1,5 @@
 config.json
+project_env/
 *.csv
 *.spec
 dist/*

@@ -10,7 +10,7 @@ appConfig = getConfig()
 
 # read the nodes info
 nodesInfoPath = appConfig["nodesExcelPath"]
-nodesDf = pd.read_excel(nodesInfoPath)
+nodesDf = pd.read_excel(nodesInfoPath, engine='openpyxl')
 
 ipCol = 'ip'
 nameCol = 'name'
@@ -44,9 +44,11 @@ tokenUrl = appConfig["tokenUrl"]
 clientId = appConfig["clientId"]
 clientSecret = appConfig["clientSecret"]
 clientScope = appConfig["clientScope"]
-accessToken = getAccessTokenFromSts(tokenUrl, clientId, clientSecret, clientScope)
+accessToken = getAccessTokenFromSts(
+    tokenUrl, clientId, clientSecret, clientScope)
 # print(accessToken)
 
 endpoint = appConfig["pingStatusCreationEndPnt"]
-res = requests.post(endpoint, json=payload, headers={'Authorization': 'Bearer {}'.format(accessToken)})
+res = requests.post(endpoint, json=payload, headers={
+                    'Authorization': 'Bearer {}'.format(accessToken)})
 # print(res.text)
